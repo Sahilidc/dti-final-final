@@ -1,0 +1,15 @@
+document.addEventListener "DOMContentLoaded", ->
+  document.body.classList.add('loaded-document')
+
+texts = document.querySelectorAll('.text-in')
+element = texts[texts.length - 1]
+
+for event in ['webkitTransitionEnd','oTransitionEnd', 'transitionend', 'msTransitionEnd']
+  element.addEventListener event, ->
+    document.body.classList.add('time-is-out')  
+  
+img = new Image()
+img.onload = ->
+  document.body.classList.add('loaded-image')
+img.src = getComputedStyle(document.querySelector('.background-image')).backgroundImage.slice(4, -1).replace(/"/g, "")
+
